@@ -6,8 +6,8 @@ from DCC_class import *
 from Utilities import *
 import matplotlib.pyplot as plt
 
-spx = pd.read_csv('SPX.csv')
-spx1 = pd.read_csv('SPX1.csv')
+spx = pd.read_csv('Data/SPX.csv')
+spx1 = pd.read_csv('Data/SPX1.csv')
 spx['Date'] = pd.to_datetime(spx['Date'])
 spx1['Date'] = pd.to_datetime(spx1['Date'])
 spx = pd.concat([spx, spx1])
@@ -18,7 +18,7 @@ spx = spx[['Price']]
 spx = spx[::-1]
 spx.columns = ['SPX']
 
-ust = pd.read_excel('DGS10.xlsx', sheet_name='Daily')
+ust = pd.read_excel('Data/DGS10.xlsx', sheet_name='Daily')
 ust.columns = ['Date', 'UST']
 ust = ust.set_index('Date')
 ust.index = pd.to_datetime(ust.index)

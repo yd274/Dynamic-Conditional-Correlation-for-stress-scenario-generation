@@ -285,8 +285,8 @@ class DCC(GenericLikelihoodModel):
                 for j in range(1, window):
                     var_forecast[j] = (vol_params[i]['omega'] + vol_params[i]['beta[1'] * var_forecast[j - 1, i]
                                        + vol_params[i]['alpha[1]'] * std_resid[j - 1, i] ** 2
-                                       + vol_params[i]['gamma[1]'] * std_resid[j - 1, i] ** 2 if std_resid[j - 1, i] < 0
-                                       else 0 if self.vol_asymmetry else 0 )
+                                       + (vol_params[i]['gamma[1]'] * std_resid[j - 1, i] ** 2
+                                          if std_resid[j - 1, i] < 0 else 0 if self.vol_asymmetry else 0) )
 
                     vol_forecast[j] = np.sqrt(var_forecast[j])
                     temp = np.reshape(np.array(std_resid[j - 1]), (self._n_dim, 1))
